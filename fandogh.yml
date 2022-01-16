@@ -1,0 +1,10 @@
+kind: ExternalService
+name: example-project
+spec:
+  domains:
+    - name: omidobz.ir
+  image_pull_policy: Always
+  port: 80
+  source:
+    context: .
+    project_type: react

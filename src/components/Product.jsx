@@ -3,12 +3,13 @@ import "./product.css";
 
 class Product extends Component {
   state = {
-    count: 0,
+    count: this.props.count,
   };
   render() {
+    const {productName} = this.props;
     return (
-      <>
-        <span className="m-2 text-info">laptop</span>
+      <div>
+        <span className="m-2 text-info">{productName}</span>
         <span className="m-2 badge bg-primary">{this.format()}</span>
         <button
           onClick={this.handleIncrement}
@@ -28,7 +29,7 @@ class Product extends Component {
         >
           delete
         </button>
-      </>
+      </div>
     );
   }
 
@@ -43,7 +44,7 @@ class Product extends Component {
   };
 
   handleDelete = () => {
-    console.log("Delete");
+    this.props.onDelete(this.props.id)
   };
 
   format() {
