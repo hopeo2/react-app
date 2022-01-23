@@ -1,10 +1,10 @@
 import { Component } from "react";
 import "./product.css";
+import ProductsContext from "../context/Products";
 
 class Product extends Component {
-  state = {
-    count: this.props.count,
-  };
+  static contextType = ProductsContext;
+  
   render() {
     const {productName} = this.props;
     return (
@@ -34,24 +34,22 @@ class Product extends Component {
   }
 
   handleIncrement = () => {
-    const { count } = this.state;
-    this.setState({ count: count + 1 });
+    this.context.onInc(this.props.id)
   };
 
   handleDecrement = () => {
-    const { count } = this.state;
-    this.setState({ count: count - 1 });
+    this.context.onDec(this.props.id)
   };
 
   handleDelete = () => {
-    this.props.onDelete(this.props.id)
+    this.context.onDel(this.props.id)
   };
 
   format() {
-    if (this.state.count === 0) {
+    if (this.props.count === 0) {
       return "zero";
     } else {
-      return this.state.count;
+      return this.props.count;
     }
   }
 }
